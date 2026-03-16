@@ -23,44 +23,44 @@ jobs:
             echo "===================="
             echo ""
             
-            # 微博热搜
-            echo "【微博热搜 Top 10】"
-            curl -s "$RSSHUB/weibo/hotsearch" | grep -o '<title>[^<]*</title>' | sed 's/<title>//g' | sed 's/<\/title>//g' | tail -n +2 | head -10
-            echo ""
-            
-            # 百度热搜
-            echo "【百度热搜 Top 10】"
-            curl -s "$RSSHUB/baidu/hotwords" | grep -o '<title>[^<]*</title>' | sed 's/<title>//g' | sed 's/<\/title>//g' | tail -n +2 | head -10
-            echo ""
-            
-            # 36氪
+            # 36氪（稳定的）
             echo "【36氪快讯】"
-            curl -s "$RSSHUB/36kr/newsflashes" | grep -o '<title>[^<]*</title>' | sed 's/<title>//g' | sed 's/<\/title>//g' | tail -n +2 | head -10
+            curl -sL "$RSSHUB/36kr/newsflashes" 2>/dev/null | grep -o '<title>[^<]*</title>' | sed 's/<title>//g' | sed 's/<\/title>//g' | tail -n +2 | head -10
             echo ""
             
-            # 虎嗅
-            echo "【虎嗅】"
-            curl -s "$RSSHUB/huxiu" | grep -o '<title>[^<]*</title>' | sed 's/<title>//g' | sed 's/<\/title>//g' | tail -n +2 | head -10
+            # 知乎热榜
+            echo "【知乎热榜】"
+            curl -sL "$RSSHUB/zhihu/hot-list" 2>/dev/null | grep -o '<title>[^<]*</title>' | sed 's/<title>//g' | sed 's/<\/title>//g' | tail -n +2 | head -10
             echo ""
             
-            # 爱范儿
-            echo "【爱范儿】"
-            curl -s "$RSSHUB/ifanr" | grep -o '<title>[^<]*</title>' | sed 's/<title>//g' | sed 's/<\/title>//g' | tail -n +2 | head -10
+            # 网易科技
+            echo "【网易科技】"
+            curl -sL "$RSSHUB/163/tech" 2>/dev/null | grep -o '<title>[^<]*</title>' | sed 's/<title>//g' | sed 's/<\/title>//g' | tail -n +2 | head -10
             echo ""
             
             # IT之家
             echo "【IT之家】"
-            curl -s "$RSSHUB/ithome" | grep -o '<title>[^<]*</title>' | sed 's/<title>//g' | sed 's/<\/title>//g' | tail -n +2 | head -10
+            curl -sL "$RSSHUB/ithome" 2>/dev/null | grep -o '<title>[^<]*</title>' | sed 's/<title>//g' | sed 's/<\/title>//g' | tail -n +2 | head -10
             echo ""
             
-            # 汽车之家
-            echo "【汽车之家】"
-            curl -s "$RSSHUB/autohome" | grep -o '<title>[^<]*</title>' | sed 's/<title>//g' | sed 's/<\/title>//g' | tail -n +2 | head -10
+            # 少数派
+            echo "【少数派】"
+            curl -sL "$RSSHUB/sspai" 2>/dev/null | grep -o '<title>[^<]*</title>' | sed 's/<title>//g' | sed 's/<\/title>//g' | tail -n +2 | head -10
             echo ""
             
-            # 懂车帝
-            echo "【懂车帝】"
-            curl -s "$RSSHUB/dongche" | grep -o '<title>[^<]*</title>' | sed 's/<title>//g' | sed 's/<\/title>//g' | tail -n +2 | head -10
+            # 虎嗅
+            echo "【虎嗅】"
+            curl -sL "$RSSHUB/huxiu" 2>/dev/null | grep -o '<title>[^<]*</title>' | sed 's/<title>//g' | sed 's/<\/title>//g' | tail -n +2 | head -10
+            echo ""
+            
+            # 爱范儿
+            echo "【爱范儿】"
+            curl -sL "$RSSHUB/ifanr" 2>/dev/null | grep -o '<title>[^<]*</title>' | sed 's/<title>//g' | sed 's/<\/title>//g' | tail -n +2 | head -10
+            echo ""
+            
+            # 微博热搜（备用）
+            echo "【微博热搜】"
+            curl -sL "$RSSHUB/weibo/hotsearch" 2>/dev/null | grep -o '<title>[^<]*</title>' | sed 's/<title>//g' | sed 's/<\/title>//g' | tail -n +2 | head -10
             echo ""
             
           } > news.txt
